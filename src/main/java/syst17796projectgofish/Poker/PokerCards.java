@@ -29,7 +29,7 @@ public class PokerCards implements Comparable<PokerCards> {
     private SUIT suit;
 
     //Construct a PokerCard Object
-    protected PokerCards(VALUE value, SUIT suit){
+    public PokerCards(VALUE value, SUIT suit){
         this.value = value;
         this.suit = suit;
     }
