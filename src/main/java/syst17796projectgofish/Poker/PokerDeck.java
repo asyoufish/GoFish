@@ -10,36 +10,41 @@ import java.util.ListIterator;
  * @author Richie Chan
  */
 public class PokerDeck extends PokerCards {
-    
-    //a list of PokerCards is a Poker Deck
-    public List<PokerCards> pokerDeck = new ArrayList<>();
-    
-    //Poker Deck constructor generate a full deck of Poker Cards
+
+    // a list of PokerCards is a Poker Deck
+    private List<PokerCards> pokerDeck = new ArrayList<>();
+
+    // Poker Deck constructor generate a full deck of Poker Cards
     public PokerDeck() {
-        for(SUIT suit : SUIT.values()){
-            for(VALUE value : VALUE.values()){
-                PokerCards cd = new PokerCards(value, suit);
+        for (int i = 0; i < 4; i++) {
+            for (VALUE value : VALUE.values()) {
+                PokerCards cd = new PokerCards(value);
                 pokerDeck.add(cd);
             }
         }
     }
-    
-    //Get the cards at the index i of the Poker Deck
-    public PokerCards getPokerCards(int i) {
-        return pokerDeck.get(i);
+
+    // Get the top card of the deck
+    public PokerCards draw() {
+        return pokerDeck.remove(pokerDeck.size() - 1);
     }
-    
-    //Shffle Deck function
-    public void shuffleCards(){
-        Collections.shuffle(this.pokerDeck);
+
+    // Shffle Deck function
+    public void shuffleCards() {
+        Collections.shuffle(pokerDeck);
     }
-    
-    //List out all the cards from top to bottom of the deck
+
+    // Get the size of deck
+    public int numOfCard() {
+        return pokerDeck.size();
+    }
+
+    // List out all the cards from top to bottom of the deck
     @Override
     public String toString() {
         String output = "";
-        ListIterator<PokerCards> i = this.pokerDeck.listIterator();
-        while(i.hasNext()){
+        ListIterator<PokerCards> i = pokerDeck.listIterator();
+        while (i.hasNext()) {
             output += i.next() + ". ";
         }
         return output;
